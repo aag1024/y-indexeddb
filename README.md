@@ -1,29 +1,79 @@
-# y-indexeddb
+# y-indexeddb (UNOFFICIAL fork)
 
 > IndexedDB database provider for Yjs. [Documentation](https://docs.yjs.dev/ecosystem/database-provider/y-indexeddb)
+
+Note: This is an UNOFFICIAL fork of `yjs/y-indexeddb`. It includes a fix for unbounded growth of the `updates` store when reopening a document without changes (see issue #31) and additional tests. For the official package, see `https://github.com/yjs/y-indexeddb`.
 
 Use the IndexedDB database adapter to store your shared data persistently in
 the browser. The next time you join the session, your changes will still be
 there.
 
-* Minimizes the amount of data exchanged between server and client
-* Makes offline editing possible
+- Minimizes the amount of data exchanged between server and client
+- Makes offline editing possible
 
 ## Getting Started
+
+If you just want to consume this fork in your projects without publishing, use a Git URL dependency:
+
+```sh
+npm i github:aag1024/y-indexeddb#master
+```
+
+Or pin to a commit:
+
+```sh
+npm i github:aag1024/y-indexeddb#<commit-sha>
+```
 
 You find the complete documentation published online: [API documentation](https://docs.yjs.dev/ecosystem/database-provider/y-indexeddb).
 
 ```sh
-npm i --save y-indexeddb
+npm i --save @aag1024/y-indexeddb
 ```
 
 ```js
-const provider = new IndexeddbPersistence(docName, ydoc)
+const provider = new IndexeddbPersistence(docName, ydoc);
 
-provider.on('synced', () => {
-  console.log('content from the database is loaded')
-})
+provider.on("synced", () => {
+  console.log("content from the database is loaded");
+});
 ```
+
+## Running tests
+
+Tests run in the browser (IndexedDB is required). `npm test` only runs linting and type checks.
+
+- Quick start (watch + open in browser):
+
+  ```sh
+  npm ci
+  npm run debug
+  ```
+
+  This bundles the tests and starts a local server that opens `index.html`, which loads and runs the tests. Output appears on the page and in the browser console.
+
+- One-off build + serve:
+
+  ```sh
+  npm ci
+  npm run dist
+  npx http-server -o .
+  ```
+
+- Lint/typecheck only:
+
+  ```sh
+  npm test
+  ```
+
+Requirements: Node >= 16 and npm >= 8.
+
+## What’s different in this fork?
+
+- Fix: prevent unbounded growth on reopen by only writing the initial snapshot when the `updates` store is empty.
+- Tests: new cases to ensure no growth on reopen, persistence across sessions, and stability.
+
+Upstream repository: `https://github.com/yjs/y-indexeddb`. If the fix lands upstream, prefer the official package.
 
 ## API
 

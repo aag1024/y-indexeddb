@@ -1,7 +1,7 @@
 {
-  "name": "y-indexeddb",
-  "version": "9.0.12",
-  "description": "IndexedDB database adapter for Yjs",
+  "name": "@aag1024/y-indexeddb",
+  "version": "9.0.12-fix.1",
+  "description": "UNOFFICIAL fork of yjs/y-indexeddb with fix for unbounded updates (#31).",
   "type": "module",
   "main": "./dist/y-indexeddb.cjs",
   "module": "./src/y-indexeddb.js",
@@ -42,7 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yjs/y-indexeddb.git"
+    "url": "git+https://github.com/aag1024/y-indexeddb.git"
   },
   "keywords": [
     "Yjs",
@@ -50,14 +50,16 @@
     "offline",
     "shared editing",
     "collaboration",
-    "concurrency"
+    "concurrency",
+    "unofficial",
+    "fork"
   ],
-  "author": "Kevin Jahns <kevin.jahns@protonmail.com>",
+  "author": "UNOFFICIAL fork by aag1024 (original: Kevin Jahns)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yjs/y-indexeddb/issues"
+    "url": "https://github.com/aag1024/y-indexeddb/issues"
   },
-  "homepage": "https://yjs.dev",
+  "homepage": "https://github.com/aag1024/y-indexeddb#readme",
   "dependencies": {
     "lib0": "^0.2.74"
   },
